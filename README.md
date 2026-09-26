@@ -4,10 +4,9 @@
 
 Built for a remote back office that dispatches home repair contractors (plumbing, electrical, HVAC, handyman, drywall, painting, appliance repair, and more) across many US cities. Runs entirely on free tiers: **$0 to run, no credit card anywhere.**
 
-<!-- Screenshot: Telegram lead card. Save as docs/screenshots/telegram-card.png and uncomment:
-![Telegram lead card](docs/screenshots/telegram-card.png)
--->
-> 📸 *Screenshot placeholder: Telegram lead card with the Confirm / Reassign / Call first buttons*
+<p align="center">
+  <img src="docs/screenshots/card.jpg" width="440" alt="Telegram lead card: urgency, extracted contacts, missing info, suggested contractor, draft reply in Spanish, and Confirm / Reassign / Call first buttons">
+</p>
 
 ---
 
@@ -234,13 +233,13 @@ python run_demo.py --no-telegram    # don't post to Telegram
 python -m pytest                    # 46 offline tests, no API keys needed
 ```
 
-<!-- Screenshots: save to docs/screenshots/ and uncomment.
-![Web form](docs/screenshots/web-form.png)
-![Google Sheet](docs/screenshots/google-sheet.png)
--->
-> 📸 *Screenshot placeholder: web form with a qualified lead and its draft reply*
->
-> 📸 *Screenshot placeholder: Google Sheet mirror*
+**Web form**: paste a message, get the qualified lead, suggested contractor and draft reply
+
+![Web form with a qualified Spanish-language lead and its draft reply](docs/screenshots/web-form.jpg)
+
+**Google Sheets mirror**: every lead and status change, live
+
+![Google Sheet with one row per lead: status, urgency, service, city, contacts, problem](docs/screenshots/google-sheets.jpg)
 
 ---
 
