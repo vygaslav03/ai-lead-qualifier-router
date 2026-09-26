@@ -5,7 +5,7 @@
 Built for a remote back office that dispatches home repair contractors (plumbing, electrical, HVAC, handyman, drywall, painting, appliance repair, and more) across many US cities. Runs entirely on free tiers: **$0 to run, no credit card anywhere.**
 
 <p align="center">
-  <img src="docs/screenshots/card.jpg" width="440" alt="Telegram lead card: urgency, extracted contacts, missing info, suggested contractor, draft reply in Spanish, and Confirm / Reassign / Call first buttons">
+  <img src="docs/screenshots/card.jpg" width="423" alt="Telegram lead card: urgency, extracted contacts, missing info, suggested contractor, draft reply in Spanish, and Confirm / Reassign / Call first buttons">
 </p>
 
 ---
