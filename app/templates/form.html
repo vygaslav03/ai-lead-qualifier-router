@@ -1,0 +1,221 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lead Intake</title>
+<style>
+  :root {
+    --bg: #f5f6f8; --panel: #ffffff; --text: #1c2130; --muted: #667085; --border: #e3e6eb;
+    --accent: #2f5bea; --accent-text: #ffffff; --chip: #eef1f6;
+    --red: #d92d20; --orange: #e8710a; --yellow: #b58a00; --green: #12875a;
+    --warn-bg: #fff6e5; --warn-text: #8a5300; --err-bg: #fdecea; --err-text: #a3261b;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #12151c; --panel: #1b1f29; --text: #e6e8ee; --muted: #9aa3b5; --border: #2b3140;
+      --accent: #6d8dff; --accent-text: #0e1220; --chip: #262c3a;
+      --red: #ff6b5e; --orange: #ff9f4a; --yellow: #e8c14a; --green: #3ccf91;
+      --warn-bg: #3a2e14; --warn-text: #f3c979; --err-bg: #3d1d1a; --err-text: #ff9d92;
+    }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--text);
+         font: 15px/1.5 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+  .wrap { max-width: 1120px; margin: 0 auto; padding: 24px 16px 48px; }
+  header { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+  h1 { font-size: 20px; margin: 0; }
+  .sub { color: var(--muted); font-size: 13px; }
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 16px; }
+  @media (max-width: 820px) { .grid { grid-template-columns: 1fr; } }
+  .panel { background: var(--panel); border: 1px solid var(--border); border-radius: 10px; padding: 16px; min-width: 0; }
+  .panel h2 { font-size: 14px; margin: 0 0 12px; color: var(--muted); font-weight: 600; text-transform: uppercase; letter-spacing: .04em; }
+  label { display: block; font-size: 13px; color: var(--muted); margin-bottom: 4px; }
+  textarea, select { width: 100%; font: inherit; color: var(--text); background: var(--bg);
+                     border: 1px solid var(--border); border-radius: 8px; padding: 10px; }
+  textarea { min-height: 190px; resize: vertical; }
+  .row { display: flex; gap: 10px; align-items: end; margin-top: 12px; }
+  .row > div { flex: 1; }
+  button { font: inherit; cursor: pointer; border-radius: 8px; border: 1px solid var(--border); }
+  .primary { background: var(--accent); color: var(--accent-text); border-color: var(--accent); padding: 10px 18px; font-weight: 600; }
+  .primary:disabled { opacity: .6; cursor: wait; }
+  .samples { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
+  .samples button { background: var(--chip); color: var(--text); font-size: 12px; padding: 4px 8px; }
+  .muted { color: var(--muted); }
+  .badge { display: inline-block; padding: 2px 8px; border-radius: 999px; font-size: 12px; font-weight: 600;
+           background: var(--chip); }
+  .u-emergency { color: var(--red); } .u-within_48h { color: var(--orange); }
+  .u-this_week { color: var(--yellow); } .u-flexible { color: var(--green); }
+  .kv { display: grid; grid-template-columns: 110px 1fr; gap: 4px 12px; margin: 12px 0; font-size: 14px; }
+  .kv dt { color: var(--muted); } .kv dd { margin: 0; overflow-wrap: anywhere; }
+  .chips span { display: inline-block; background: var(--warn-bg); color: var(--warn-text);
+                font-size: 12px; border-radius: 6px; padding: 1px 7px; margin: 0 4px 4px 0; }
+  .assign { border-top: 1px solid var(--border); padding-top: 12px; margin-top: 4px; }
+  .assign.manual { color: var(--warn-text); background: var(--warn-bg); border: 0; border-radius: 8px; padding: 10px 12px; }
+  .reply { background: var(--bg); border: 1px solid var(--border); border-radius: 8px; padding: 10px 12px; margin-top: 12px; }
+  .reply-head { display: flex; justify-content: space-between; align-items: center; font-size: 13px; color: var(--muted); margin-bottom: 4px; }
+  .reply-head button { background: var(--chip); color: var(--text); font-size: 12px; padding: 2px 8px; }
+  .error { background: var(--err-bg); color: var(--err-text); border-radius: 8px; padding: 10px 12px; }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th, td { text-align: left; padding: 7px 8px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  th { color: var(--muted); font-weight: 600; }
+  .table-scroll { overflow-x: auto; }
+  code { font-size: 12px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>AI Lead Qualifier &amp; Router</h1>
+    <span class="sub" id="health">…</span>
+  </header>
+
+  <div class="grid">
+    <form class="panel" id="lead-form">
+      <h2>New customer request</h2>
+      <label for="text">Paste the message exactly as received (web form, email or SMS)</label>
+      <textarea id="text" required minlength="10" maxlength="5000"
+        placeholder="e.g. hi my water heater is leaking all over the garage, 4410 Elm St Dallas, call 214-555-0100"></textarea>
+      <div class="row">
+        <div>
+          <label for="source">Channel</label>
+          <select id="source">
+            <option value="web_form">Web form</option>
+            <option value="email">Email</option>
+            <option value="sms">SMS</option>
+          </select>
+        </div>
+        <button class="primary" type="submit" id="submit">Qualify &amp; route</button>
+      </div>
+      <div class="samples" id="samples" aria-label="Example messages"></div>
+    </form>
+
+    <section class="panel" id="result" aria-live="polite">
+      <h2>Result</h2>
+      <p class="muted">Submit a message to see the extracted lead and suggested contractor.</p>
+    </section>
+  </div>
+
+  <section class="panel" style="margin-top:16px">
+    <h2>Recent leads</h2>
+    <div class="table-scroll">
+      <table>
+        <thead><tr><th>ID</th><th>Urgency</th><th>Service</th><th>City</th><th>Summary</th><th>Status</th><th>Contractor</th></tr></thead>
+        <tbody id="leads"><tr><td colspan="7" class="muted">Loading…</td></tr></tbody>
+      </table>
+    </div>
+  </section>
+</div>
+
+<script>
+const ICON = { emergency: "🔴", within_48h: "🟠", this_week: "🟡", flexible: "🟢" };
+const LABEL = { emergency: "Emergency", within_48h: "Within 48h", this_week: "This week", flexible: "Flexible" };
+const $ = (id) => document.getElementById(id);
+const esc = (v) => String(v ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+const nice = (v) => esc(String(v ?? "").replace(/_/g, " "));
+const urgency = (u) => `<span class="badge u-${esc(u)}">${ICON[u] || ""} ${esc(LABEL[u] || u)}</span>`;
+
+async function loadHealth() {
+  try {
+    const h = await (await fetch("/health")).json();
+    $("health").textContent = `LLM: ${h.llm_provider} · ${h.llm_model}`;
+  } catch { $("health").textContent = "API unreachable"; }
+}
+
+async function loadSamples() {
+  const samples = await (await fetch("/api/samples")).json();
+  $("samples").innerHTML = '<span class="muted" style="font-size:12px;align-self:center">Try an example:</span>' +
+    samples.map((s, i) => `<button type="button" data-i="${i}" title="${esc(s.text)}">${esc(s.id)} · ${esc(s.label)}</button>`).join("");
+  $("samples").onclick = (e) => {
+    const s = samples[e.target.dataset.i];
+    if (s) { $("text").value = s.text; $("source").value = s.source; $("text").focus(); }
+  };
+}
+
+async function loadLeads() {
+  const leads = await (await fetch("/api/leads?limit=15")).json();
+  $("leads").innerHTML = leads.length ? leads.map((l) => `
+    <tr>
+      <td><code>${esc(l.id)}</code></td>
+      <td>${urgency(l.extraction.urgency)}</td>
+      <td>${nice(l.extraction.service_category)}</td>
+      <td>${esc(l.extraction.city || "—")}</td>
+      <td>${esc(l.extraction.problem_summary)}</td>
+      <td>${nice(l.status)}</td>
+      <td>${esc(l.contractor_name || "—")}</td>
+    </tr>`).join("") : '<tr><td colspan="7" class="muted">No leads yet.</td></tr>';
+}
+
+function renderResult({ lead, match }) {
+  const x = lead.extraction;
+  const c = match && match.contractor;
+  const missing = x.missing_info.length
+    ? `<div class="chips">${x.missing_info.map((m) => `<span>${esc(m)}</span>`).join("")}</div>` : "none";
+  const backups = match && match.alternatives.length
+    ? `<div class="muted" style="font-size:13px">Backups: ${match.alternatives.map((a) => `${esc(a.name)} (${a.rating}★)`).join(", ")}</div>` : "";
+  $("result").innerHTML = `
+    <h2>Result · <code>${esc(lead.id)}</code></h2>
+    <div>${urgency(x.urgency)} <span class="badge">${nice(x.service_category)}</span>
+         <span class="badge">${esc(x.city || "city?")}${x.state ? ", " + esc(x.state) : ""}</span>
+         <span class="badge">lang: ${esc(x.language_detected)}</span>
+         <span class="badge">confidence ${Math.round(x.confidence * 100)}%</span></div>
+    <p style="margin:12px 0 0"><strong>${esc(x.problem_summary)}</strong><br>
+       <span class="muted" style="font-size:13px">${esc(x.urgency_reason)}</span></p>
+    <dl class="kv">
+      <dt>Customer</dt><dd>${esc(x.customer_name || "—")}</dd>
+      <dt>Phone</dt><dd>${esc(x.phone || "—")}</dd>
+      <dt>Email</dt><dd>${esc(x.email || "—")}</dd>
+      <dt>Address</dt><dd>${esc(x.address || "—")}</dd>
+      <dt>Preferred time</dt><dd>${esc(x.preferred_time || "—")}</dd>
+      <dt>Photos</dt><dd>${x.has_photos ? "yes" : "no"}</dd>
+      <dt>Missing</dt><dd>${missing}</dd>
+    </dl>
+    ${c
+      ? `<div class="assign"><strong>Suggested: ${esc(c.name)}</strong> · ${c.rating}★ · ${esc(c.phone)}
+           <div class="muted" style="font-size:13px">${esc(match.reason)}</div>${backups}</div>`
+      : `<div class="assign manual"><strong>⚠️ Needs manual assignment</strong><br>${esc(lead.match_reason)}</div>`}
+    ${lead.draft_reply ? `
+    <div class="reply">
+      <div class="reply-head"><span>💬 Draft reply to customer · ${lead.draft_reply.length}/320</span>
+        <button type="button" id="copy-reply">Copy</button></div>
+      <div id="reply-text">${esc(lead.draft_reply)}</div>
+    </div>` : ""}`;
+  const copy = $("copy-reply");
+  if (copy) copy.onclick = async () => {
+    try { await navigator.clipboard.writeText(lead.draft_reply); copy.textContent = "Copied"; }
+    catch { copy.textContent = "Copy failed"; }
+  };
+}
+
+$("lead-form").addEventListener("submit", async (e) => {
+  e.preventDefault();
+  const btn = $("submit");
+  btn.disabled = true;
+  const started = Date.now();
+  const tick = setInterval(() => { btn.textContent = `Analyzing… ${Math.round((Date.now() - started) / 1000)}s`; }, 250);
+  try {
+    const res = await fetch("/api/leads", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ text: $("text").value, source: $("source").value }),
+    });
+    const data = await res.json();
+    if (!res.ok) {
+      const msg = Array.isArray(data.detail) ? data.detail.map((d) => d.msg).join("; ") : data.detail;
+      throw new Error(msg || `HTTP ${res.status}`);
+    }
+    renderResult(data);
+    loadLeads();
+  } catch (err) {
+    $("result").innerHTML = `<h2>Result</h2><div class="error">${esc(err.message)}</div>`;
+  } finally {
+    clearInterval(tick);
+    btn.disabled = false;
+    btn.textContent = "Qualify & route";
+  }
+});
+
+loadHealth(); loadSamples(); loadLeads();
+</script>
+</body>
+</html>

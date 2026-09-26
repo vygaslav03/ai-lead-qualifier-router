@@ -1,0 +1,21 @@
+id,name,city,state,specializations,is_available,rating,phone
+C001,Bayou City Plumbing Co,Houston,TX,plumbing;hvac,true,4.8,(713) 555-0101
+C002,Lone Star Fix-It,Houston,TX,handyman;drywall;painting,true,4.5,(713) 555-0102
+C003,Gulf Coast Electric,Houston,TX,electrical,false,4.9,(713) 555-0103
+C004,Magnolia Home Services,Houston,TX,plumbing;appliance_repair,true,4.3,(713) 555-0104
+C005,Trinity River Plumbing,Dallas,TX,plumbing,true,4.7,(214) 555-0105
+C006,Big D Roofing & Repair,Dallas,TX,roofing;drywall,true,4.6,(214) 555-0106
+C007,Metroplex Handyman Pros,Dallas,TX,handyman;painting;flooring,true,4.2,(214) 555-0107
+C008,Peachtree Painting,Atlanta,GA,painting;drywall,true,4.9,(404) 555-0108
+C009,Buckhead Plumbing & Drain,Atlanta,GA,plumbing,true,4.4,(404) 555-0109
+C010,ATL Appliance Doctors,Atlanta,GA,appliance_repair;electrical,false,4.6,(404) 555-0110
+C011,Windy City Electric,Chicago,IL,electrical,false,4.9,(312) 555-0111
+C012,Lakeshore Electrical Services,Chicago,IL,electrical;handyman,true,4.5,(312) 555-0112
+C013,Second City Appliance Repair,Chicago,IL,appliance_repair,true,4.7,(312) 555-0113
+C014,Southside Plumbing Crew,Chicago,IL,plumbing;hvac,true,4.1,(773) 555-0114
+C015,Desert Air HVAC,Phoenix,AZ,hvac,true,4.8,(602) 555-0115
+C016,Valley Plumbing Solutions,Phoenix,AZ,plumbing;appliance_repair,true,4.4,(602) 555-0116
+C017,Cactus Handyman Services,Phoenix,AZ,handyman;drywall;painting,false,4.3,(480) 555-0117
+C018,Mile High Mechanical,Denver,CO,hvac;plumbing,true,4.7,(303) 555-0118
+C019,Rocky Mountain Drywall,Denver,CO,drywall;painting,true,4.6,(303) 555-0119
+C020,Front Range Handyman,Denver,CO,handyman;electrical,true,4.2,(720) 555-0120

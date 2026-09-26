@@ -1,0 +1,14 @@
+# Secrets
+.env
+credentials/*
+!credentials/.gitkeep
+
+# Local data
+data/*.db
+data/extraction_results.json
+
+# Python
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/

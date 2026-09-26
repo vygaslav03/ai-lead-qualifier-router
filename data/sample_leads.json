@@ -1,0 +1,92 @@
+[
+  {
+    "id": "L01",
+    "source": "web_form",
+    "note": "emergency, typos",
+    "text": "HELP water is comming thru the kitchen cieling right now, i think its from the upstairs bathroom. turned off the main valve but its still dripping everywhere. Mark Delaney, 4417 Westheimer Rd Houston TX, 713-555-0142. pls send someone asap!!"
+  },
+  {
+    "id": "L02",
+    "source": "sms",
+    "note": "Spanish",
+    "text": "Hola, buenas tardes. Mi calentador de agua no calienta desde ayer, no tenemos agua caliente para los niños. Vivo en Dallas, en Oak Cliff. Me llamo Rosa Martínez, mi número es 214-555-0177. ¿Pueden venir mañana en la mañana?"
+  },
+  {
+    "id": "L03",
+    "source": "sms",
+    "note": "no city, emergency",
+    "text": "outlet in my sons bedroom sparked when he plugged in his charger and now theres a burning smell. flipped the breaker off. can an electrician come today? this is Dana, 555-0163"
+  },
+  {
+    "id": "L04",
+    "source": "web_form",
+    "note": "vague",
+    "text": "need some work done around the house. call me back. 602-555-0188"
+  },
+  {
+    "id": "L05",
+    "source": "web_form",
+    "note": "typos, heat + vulnerable person",
+    "text": "ac stoped working last nite, its blowing warm air and its 104 outside. my mom is 82 and lives with us. we are in phoenix near camelback and 24th st. name is Tom Nguyen tnguyen.fake@example.com"
+  },
+  {
+    "id": "L06",
+    "source": "email",
+    "note": "photos, flexible",
+    "text": "Subject: Drywall repair quote\n\nHi there,\n\nOur door handle punched a hole in the hallway wall (about the size of a fist) and there's also some cracking along the ceiling seam in the living room. Nothing urgent, just want it patched and painted to match. I attached a couple of photos.\n\nWe're at 1250 S Pearl St, Denver CO 80210. Weekday afternoons work best.\n\nThanks,\nPriya Raman\n(303) 555-0129"
+  },
+  {
+    "id": "L07",
+    "source": "web_form",
+    "note": "quote request, no phone",
+    "text": "Looking for a quote to paint 3 bedrooms and the hallway, walls only, ceilings are fine. House in Decatur area of Atlanta. Flexible on timing, sometime in the next month. - Jordan Ellis, jordan.ellis@example.com"
+  },
+  {
+    "id": "L08",
+    "source": "email",
+    "note": "appliance, this week",
+    "text": "Subject: dishwasher\n\nour samsung dishwasher isnt draining, theres standing water at the bottom after every cycle. we've been washing by hand for 3 days lol. Chicago, Logan Square. can someone come thursday or friday?\n\nKevin O'Brien\n312-555-0136"
+  },
+  {
+    "id": "L09",
+    "source": "web_form",
+    "note": "storm damage, borderline urgency",
+    "text": "After the storm on Sunday a bunch of shingles blew off the back side of the roof. Theres a small water stain on the bedroom ceiling that got a little bigger today. More rain in the forecast this weekend. 2208 Greenville Ave, Dallas. Melissa Carter 214-555-0151"
+  },
+  {
+    "id": "L10",
+    "source": "sms",
+    "note": "handyman list",
+    "text": "hey need a handyman for a few things - mount a 65in tv on drywall, hang 2 shelves, fix a closet door that wont close. houston heights. saturday morning ideally. Chris 713 555 0119"
+  },
+  {
+    "id": "L11",
+    "source": "web_form",
+    "note": "no power, emergency",
+    "text": "Half the house has no power since about 7pm. Reset the breaker and it trips again immediately. Fridge and furnace are on the dead side. 3321 N Clark St, Chicago IL. Aisha Johnson, 773-555-0190, aisha.j@example.com"
+  },
+  {
+    "id": "L12",
+    "source": "email",
+    "note": "flooring, no specialist in Denver",
+    "text": "Subject: Hardwood floors\n\nHello, we just bought a house in Denver (Park Hill) and would like the original oak floors refinished before we move in, roughly 900 sq ft. Closing is Oct 20 so anytime before that. Please send an estimate.\n\nBest,\nSam & Leah Whitford\nwhitford.home@example.com"
+  },
+  {
+    "id": "L13",
+    "source": "sms",
+    "note": "lowercase sms, minor",
+    "text": "toilet keeps running all night and the handle is loose. its the only bathroom we have tho. atlanta 30310. whenever u can this week. - marcus"
+  },
+  {
+    "id": "L14",
+    "source": "email",
+    "note": "uncovered city",
+    "text": "Subject: Furnace tune-up\n\nHi, I'd like to schedule a furnace inspection and tune-up before it gets cold. Gas furnace, about 10 years old, no problems so far. I'm in Austin, TX 78704. Any weekday after 3pm.\n\nThanks,\nBeth Holloway\n512-555-0172"
+  },
+  {
+    "id": "L15",
+    "source": "web_form",
+    "note": "multiple issues, preferred time",
+    "text": "Garbage disposal is jammed and just hums, and the kitchen faucet drips constantly. I have pics if needed. 8840 E Indian School Rd, Scottsdale side of Phoenix AZ. Available Tuesday between 9 and noon. Linda Park - 480-555-0166"
+  }
+]
